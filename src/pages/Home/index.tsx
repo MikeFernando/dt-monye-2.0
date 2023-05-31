@@ -25,6 +25,7 @@ export function Home(){
                 <td>{transaction.description}</td>
                 <td>
                   <S.PriceHighlight transactionType={transaction.type}>
+                    {transaction.type === 'outcome' && '- '}
                     {formatterPrice(transaction.price)}
                   </S.PriceHighlight>
                 </td>

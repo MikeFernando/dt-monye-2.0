@@ -31,7 +31,12 @@ export const Container = styled.form`
     align-items: center;
     gap: 0.5rem;
 
-    &:hover {
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
       background-color: ${props => props.theme['green-300']};
       color: ${props => props.theme.white};
       transition: background-color .3s, color 0.3s ease;
