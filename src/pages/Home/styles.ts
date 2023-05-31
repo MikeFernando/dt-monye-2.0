@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 interface PriceHighlightProps {
   transactionType: 'income' | 'outcome'
@@ -16,10 +16,10 @@ export const Table = styled.table`
   border-collapse: separate;
   border-spacing: 0 0.5rem;
   margin-top: 1.5rem;
-  
+
   td {
     padding: 1.25rem 2rem;
-    background-color: ${props => props.theme['gray-700']};
+    background-color: ${(props) => props.theme['gray-700']};
 
     &:first-child {
       border-top-left-radius: 6px;
@@ -34,7 +34,8 @@ export const Table = styled.table`
 `
 
 export const PriceHighlight = styled.span<PriceHighlightProps>`
-  color: ${props => props.transactionType === 'income'
-   ? props.theme['green-500'] 
-   : props.theme['red-300']}
+  color: ${(props) =>
+    props.transactionType === 'income'
+      ? props.theme['green-500']
+      : props.theme['red-300']};
 `

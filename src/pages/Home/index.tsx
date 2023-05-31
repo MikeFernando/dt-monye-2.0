@@ -1,13 +1,13 @@
-import { Header } from "../components/Header";
-import { Summary } from "../components/Summary";
-import { SearchForm } from "./components/SearchForm";
+import { Header } from '../components/Header'
+import { Summary } from '../components/Summary'
+import { SearchForm } from './components/SearchForm'
 
-import { formatterDate, formatterPrice } from "../../util/formatter";
-import { useTransactions } from "../../hooks/useTransactions";
+import { formatterDate, formatterPrice } from '../../util/formatter'
+import { useTransactions } from '../../hooks/useTransactions'
 
 import * as S from './styles'
 
-export function Home(){
+export function Home() {
   const { transactions } = useTransactions()
 
   return (
@@ -17,10 +17,10 @@ export function Home(){
 
       <S.TransactionsContainer>
         <SearchForm />
-        
+
         <S.Table>
           <tbody>
-            {transactions.map(transaction => (
+            {transactions.map((transaction) => (
               <tr key={transaction.id}>
                 <td>{transaction.description}</td>
                 <td>
@@ -37,5 +37,5 @@ export function Home(){
         </S.Table>
       </S.TransactionsContainer>
     </div>
-  );
+  )
 }

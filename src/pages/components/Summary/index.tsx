@@ -7,20 +7,23 @@ import { formatterPrice } from '../../../util/formatter'
 
 import * as S from './styles'
 
-export function Summary(){
+export function Summary() {
   const { transactions } = useTransactions()
 
-  const summary = transactions.reduce((acc, transaction) => {
-    if (transaction.type === 'income') {
-      acc.income += transaction.price
-      acc.total += transaction.price
-    } else {
-      acc.outcome += transaction.price
-      acc.total -= transaction.price
-    }
+  const summary = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === 'income') {
+        acc.income += transaction.price
+        acc.total += transaction.price
+      } else {
+        acc.outcome += transaction.price
+        acc.total -= transaction.price
+      }
 
-    return acc
-  }, {income: 0, outcome: 0, total: 0})
+      return acc
+    },
+    { income: 0, outcome: 0, total: 0 },
+  )
 
   return (
     <S.Container>
@@ -42,7 +45,7 @@ export function Summary(){
         <strong>-{formatterPrice(summary.outcome)}</strong>
       </S.SummaryCard>
 
-      <S.SummaryCard variant='green'>
+      <S.SummaryCard variant="green">
         <header>
           <span>Total</span>
           <img src={totalImg} alt="Cifrão dólar" />
@@ -51,5 +54,5 @@ export function Summary(){
         <strong>{formatterPrice(summary.total)}</strong>
       </S.SummaryCard>
     </S.Container>
-  );
+  )
 }

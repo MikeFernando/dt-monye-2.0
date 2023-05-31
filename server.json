@@ -1,28 +1,28 @@
 {
-    "transactions": [
-        {
-            "id": 1,
-            "description": "Desenvolvimento de site",
-            "price": 15000,
-            "category": "Venda",
-            "createdAt": "2023-05-30T23:32:38.524Z",
-            "type": "income"
-        },
-        {
-            "id": 2,
-            "description": "Aluguel",
-            "price": 1000,
-            "category": "Casa",
-            "createdAt": "2023-05-29T23:20:38.524Z",
-            "type": "outcome"
-        },
-        {
-            "id": 3,
-            "description": "Ignite Rocketseat",
-            "price": 1980,
-            "category": "Educação",
-            "createdAt": "2020-05-29T23:20:38.524Z",
-            "type": "outcome"
-        }
-    ]
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "price": 15000,
+      "category": "Venda",
+      "createdAt": "2023-05-30T23:32:38.524Z",
+      "type": "income"
+    },
+    {
+      "id": 2,
+      "description": "Aluguel",
+      "price": 1000,
+      "category": "Casa",
+      "createdAt": "2023-05-29T23:20:38.524Z",
+      "type": "outcome"
+    },
+    {
+      "id": 3,
+      "description": "Ignite Rocketseat",
+      "price": 1980,
+      "category": "Educação",
+      "createdAt": "2020-05-29T23:20:38.524Z",
+      "type": "outcome"
+    }
+  ]
 }

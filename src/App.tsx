@@ -1,11 +1,10 @@
-import { ThemeProvider } from "styled-components"
+import { ThemeProvider } from 'styled-components'
 
-import { Home } from "./pages/Home"
+import { Home } from './pages/Home'
 
-import { GlobalStyles } from "./styles/global"
+import { GlobalStyles } from './styles/global'
 import { defaultTheme } from './styles/theme/default'
-import { TransactionsContextProvider } from "./contexts/TransactionsContext"
-
+import { TransactionsContextProvider } from './contexts/TransactionsContext'
 
 export function App() {
   return (
@@ -18,4 +17,3 @@ export function App() {
     </ThemeProvider>
   )
 }
-

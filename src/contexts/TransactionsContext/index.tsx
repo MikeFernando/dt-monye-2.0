@@ -1,26 +1,52 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from 'react'
 
+import { api } from '../../lib/axios'
 import * as T from './types'
 
 export const TransactionsContext = createContext({} as T.ContextData)
 
 export function TransactionsContextProvider({ children }: T.Props) {
-    const [ transactions, setTransactions ] = useState<T.Transaction[]>([])
+  const [transactions, setTransactions] = useState<T.Transaction[]>([])
 
-    async function fetchTransactions() {
-        const response = await fetch('http://localhost:3333/transactions')
-        const data = await response.json()
+  async function fetchTransactions(query?: string) {
+    const response = await api.get('/transactions', {
+      params: {
+        _sort: 'createdAt',
+        _order: 'desc',
+        q: query,
+      },
+    })
 
-        setTransactions(data)
-    }
+    setTransactions(response.data)
+  }
 
-    useEffect(() => {
-        fetchTransactions()
-    }, [])
+  async function createTransaction(data: T.NewTransactionFormInput) {
+    const { description, price, category, type } = data
 
-    return (
-        <TransactionsContext.Provider value={{ transactions }}>
-            { children }
-        </TransactionsContext.Provider>
-    )
+    const response = await api.post('/transactions', {
+      description,
+      category,
+      price,
+      type,
+      createdAt: new Date(),
+    })
+
+    setTransactions((state) => [response.data, ...state])
+  }
+
+  useEffect(() => {
+    fetchTransactions()
+  }, [])
+
+  return (
+    <TransactionsContext.Provider
+      value={{
+        transactions,
+        fetchTransactions,
+        createTransaction,
+      }}
+    >
+      {children}
+    </TransactionsContext.Provider>
+  )
 }
