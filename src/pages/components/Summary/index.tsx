@@ -2,9 +2,26 @@ import incomeImg from '../../../assets/income.svg'
 import outcomeImg from '../../../assets/outcome.svg'
 import totalImg from '../../../assets/cifrao.svg'
 
+import { useTransactions } from '../../../hooks/useTransactions'
+import { formatterPrice } from '../../../util/formatter'
+
 import * as S from './styles'
 
 export function Summary(){
+  const { transactions } = useTransactions()
+
+  const summary = transactions.reduce((acc, transaction) => {
+    if (transaction.type === 'income') {
+      acc.income += transaction.price
+      acc.total += transaction.price
+    } else {
+      acc.outcome += transaction.price
+      acc.total -= transaction.price
+    }
+
+    return acc
+  }, {income: 0, outcome: 0, total: 0})
+
   return (
     <S.Container>
       <S.SummaryCard>
@@ -13,7 +30,7 @@ export function Summary(){
           <img src={incomeImg} alt="Seta apontando para cima" />
         </header>
 
-        <strong>R$ 17.400,00</strong>
+        <strong>{formatterPrice(summary.income)}</strong>
       </S.SummaryCard>
 
       <S.SummaryCard>
@@ -22,7 +39,7 @@ export function Summary(){
           <img src={outcomeImg} alt="Seta apontando para baixo" />
         </header>
 
-        <strong>R$ 17.400,00</strong>
+        <strong>-{formatterPrice(summary.outcome)}</strong>
       </S.SummaryCard>
 
       <S.SummaryCard variant='green'>
@@ -31,7 +48,7 @@ export function Summary(){
           <img src={totalImg} alt="Cifrão dólar" />
         </header>
 
-        <strong>R$ 17.400,00</strong>
+        <strong>{formatterPrice(summary.total)}</strong>
       </S.SummaryCard>
     </S.Container>
   );
